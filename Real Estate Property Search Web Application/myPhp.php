@@ -4,25 +4,25 @@ header('Access-Control-Allow-Methods: GET, POST');
 ?>
   <?php    
    
-		$address = $_GET['address'];
-		$city = $_GET['city'];
-		$state = $_GET['state'];
-	
+	$address = $_GET['address'];
+	$city = $_GET['city'];
+	$state = $_GET['state'];
 
-		$citystate = $city.", ".$state;	
-		$data = array('zws-id'=>'X1-ZWz1dxnwibm80b_9zlkj',
-              'address'=>$address,
-              'citystatezip'=>$citystate,
-              'rentzestimate'=>'true');
 
-$halfurl = http_build_query($data) ;
-$url = 'http://www.zillow.com/webservice/GetDeepSearchResults.htm?'.$halfurl;
+       $citystate = $city.", ".$state;	
+       $data = array('zws-id'=>'X1-ZWz1dxnwibm80b_9zlkj',
+      'address'=>$address,
+      'citystatezip'=>$citystate,
+      'rentzestimate'=>'true');
 
-$xml=simplexml_load_file($url);
+	$halfurl = http_build_query($data) ;
+	$url = 'http://www.zillow.com/webservice/GetDeepSearchResults.htm?'.$halfurl;
+
+	$xml=simplexml_load_file($url);
             
 if(isset($xml)){
 
-//print_r($xml);
+	//print_r($xml);
 	if($xml->message->code[0] != 0)
 	{
 		$errormsg = 1;
